@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var cityTextField: UITextField!
     @IBOutlet var displayLabel: UILabel!
+    @IBOutlet var cityNameLabel: UILabel!
     var firstLoad = true
     @IBOutlet var submitButton: UIButton!
     var myStringValue: String?
@@ -24,14 +25,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         var userCity = cityTextField.text
         
+        userCity = userCity?.trimmingCharacters(in: .whitespacesAndNewlines) // trim the whitespace around a string
+        
         if (userCity?.contains(" "))! {
         
             userCity = userCity?.replacingOccurrences(of: " ", with: "-")
             
         }
         
+        userCity = userCity?.capitalized // capitalize first letters
+        
         if let url = URL(string: "http://www.weather-forecast.com/locations/"+userCity!+"/forecasts/latest"){
-            
             let request = NSMutableURLRequest(url: url)
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -41,7 +45,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 if (error != nil) {
                     
                     print(error!)
-                    
                 } else {
                     
                     if let unwrappedData = data {
@@ -95,34 +98,53 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 }
                 
-                if (toDisplay == "") {
-                    toDisplay = "The weather at your specjkjkjkified location could not be found. Please try again"
+                if (self.cityTextField.text == "") {
+                    toDisplay = "Please enter a city or select one from the 'Recents' page."
+                    userCity = ""
+                }
+                else if toDisplay == "" {
+                    toDisplay = "Invalid Location. The weather at your specified location could not be found. Please try again."
+                    userCity = ""
                 }
                 
                 DispatchQueue.main.sync(execute: {
                     
                     self.displayLabel.text = toDisplay
+                    if (userCity?.contains("-"))! {
+                        
+                        userCity = userCity?.replacingOccurrences(of: "-", with: " ")
+                        
+                    }
+                    self.cityNameLabel.text = userCity
                 })
             }
             task.resume()
             
         } else {
             
-            displayLabel.text = "The weather at your specified location could not be found. Please try again"
+            displayLabel.text = "Invalid Location. The weather at your specified location could not be found. Please try again"
         }
-        //print(userCity!)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("first view controller")
         displayLabel.text = ""
+        submitButton.layer.cornerRadius = 4
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(false, animated: true)
-        print("value is \(myStringValue)")
+        
+        if myStringValue != nil {
+            
+            if (myStringValue?.contains("-"))! {
+            
+                myStringValue = myStringValue?.replacingOccurrences(of: "-", with: " ")
+            
+            }
+        }
+        
         cityTextField.text = myStringValue
         if firstLoad != true {
             submitButton.sendActions(for: UIControlEvents.touchUpInside)

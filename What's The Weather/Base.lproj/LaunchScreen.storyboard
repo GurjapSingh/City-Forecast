@@ -21,12 +21,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="vfun94cuy4o-david-marcu.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-OS-jVo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunset2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6ux-OS-jVo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6ux-OS-jVo" secondAttribute="trailing" id="92M-gv-jYS"/>
+                            <constraint firstItem="6ux-OS-jVo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Cgc-CF-mq9"/>
+                            <constraint firstItem="6ux-OS-jVo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="cBU-ZU-yFc"/>
+                            <constraint firstAttribute="bottom" secondItem="6ux-OS-jVo" secondAttribute="bottom" id="fp3-VA-EcS"/>
+                        </constraints>
                     </view>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
@@ -36,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="vfun94cuy4o-david-marcu.jpg" width="1500" height="996"/>
+        <image name="sunset2.jpg" width="2110" height="2461"/>
     </resources>
 </document>

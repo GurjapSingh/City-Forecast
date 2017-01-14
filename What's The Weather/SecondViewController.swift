@@ -32,7 +32,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected cell \(indexPath.row)!")
+        //print("You selected cell \(indexPath.row)!")
         
         let firstViewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         
@@ -48,7 +48,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         // Do any additional setup after loading the view.
         
-        print("second view controller")
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
 
