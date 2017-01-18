@@ -49,11 +49,13 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view.
         
         self.tableView!.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
+        UIApplication.shared.statusBarStyle = .default
         let locationItems = UserDefaults.standard.object(forKey: "recentWeatherLocations")
         
         if let tempLocations = locationItems as? [String] {
@@ -62,6 +64,11 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         tableView.reloadData()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
     }
 
     override func didReceiveMemoryWarning() {

@@ -135,7 +135,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(false, animated: true)
-        
+        UIApplication.shared.statusBarStyle = .lightContent
         if myStringValue != nil {
             
             if (myStringValue?.contains("-"))! {

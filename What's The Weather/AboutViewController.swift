@@ -23,8 +23,13 @@ class AboutViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+    }
     /*
     // MARK: - Navigation
 
